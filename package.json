@@ -1,0 +1,30 @@
+{
+  "name": "portafolio-iaed",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Patoicka/Portafolio-IAED.git"
+  },
+  "author": "Isaac Alejandro Espinosa Domínguez",
+  "bugs": {
+    "url": "https://github.com/Patoicka/Portafolio-IAED/issues"
+  },
+  "homepage": "https://github.com/Patoicka/Portafolio-IAED#readme",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

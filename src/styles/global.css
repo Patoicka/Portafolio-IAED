@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Tokens de diseño
+   Los valores viven en variables CSS normales (:root) para que el modo oscuro
+   pueda reemplazarlos en tiempo de ejecución. @theme inline expone esas
+   variables a Tailwind: bg-paper, text-ink, border-line, font-serif, ease-out…
+   ========================================================================== */
+
+:root {
+  --paper: #FAF8F4;
+  --ink: #15161A;
+  --muted: #5F6069;
+  --line: #E4DFD6;
+  --accent: #2B4ACB;
+  --card: #FFFFFF;
+  --shadow: rgba(21, 22, 26, .07);
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0E0F12;
+    --ink: #ECEBE8;
+    --muted: #9A9CA5;
+    --line: #23252C;
+    --accent: #8AA0FF;
+    --card: #16181D;
+    --shadow: rgba(0, 0, 0, .4);
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-shadow: var(--shadow);
+}
+
+@theme {
+  /* Tipografía: fuente web + respaldo real del sistema */
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Curva única del sitio. Se aplica también como curva por defecto de
+     cualquier utilidad transition-* de Tailwind. */
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --default-transition-timing-function: cubic-bezier(.16, 1, .3, 1);
+
+  /* Ancho de lectura: ~70 caracteres por línea en el cuerpo de texto */
+  --container-lectura: 68ch;
+  --container-site: 1140px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 768px) {
+    body { font-size: 17px; }
+  }
+
+  /* Foco visible propio, con el color de acento */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* ==========================================================================
+   Movimiento reducido: obligatorio.
+   Desactiva animaciones y transiciones en todo el sitio.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

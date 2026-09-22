@@ -1,0 +1,31 @@
+---
+// Página temporal de la fase 1: solo sirve para revisar los tokens de diseño.
+// Se reemplaza por la portada real en la fase 2.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const swatches = ['paper', 'ink', 'muted', 'line', 'accent', 'card'];
+---
+
+<BaseLayout
+  title="Isaac Espinosa — Desarrollador Web Full-Stack"
+  description="Portafolio de Isaac Alejandro Espinosa Domínguez, desarrollador web full-stack."
+>
+  <main class="mx-auto max-w-site px-5 py-24 md:px-16">
+    <p class="mb-6 text-[13px] uppercase tracking-[2.4px] text-muted">Tokens de diseño</p>
+    <h1 class="mb-8 font-serif text-[clamp(46px,8.4vw,104px)] leading-[1.02] font-normal">
+      Instrument Serif con <em class="text-accent">acento</em>.
+    </h1>
+    <p class="mb-12 max-w-lectura text-muted">
+      Inter para el cuerpo de texto. Este párrafo está limitado a <strong class="font-medium text-ink">68ch</strong> de ancho, que es la medida que usarán los casos de estudio.
+    </p>
+
+    <ul class="grid grid-cols-2 gap-4 md:grid-cols-6">
+      {swatches.map((name) => (
+        <li class="rounded-2xl border border-line bg-card p-4 transition-transform duration-500 hover:-translate-y-1">
+          <span class="mb-3 block h-12 rounded-lg border border-line" style={`background: var(--${name})`}></span>
+          <span class="text-sm text-muted">{name}</span>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
