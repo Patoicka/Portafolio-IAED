@@ -25,11 +25,11 @@ Decisiones y datos que faltan por confirmar. Se van cerrando conforme avanza el 
         url: https://...   # o /descargas/archivo.zip si el archivo vive en public/
         nota: Texto opcional bajo el botón (por ejemplo, las restricciones de la demo)
       ```
-      - Quinielas: demo web en evaluación. La plataforma es de Isaac, no de VKSolutions.
+      - Quinielas: se hizo en VKSolutions y es confidencial. Sin demo; la nota final se queda.
+      - Análisis predictivo deportivo: proyecto propio, candidato a demo web. Hoy vive en "Otros
+        proyectos" (sin página propia). Si llega la demo: agregarle un enlace en esa lista o
+        convertirlo en caso de estudio completo (requiere contenido nuevo de Isaac).
       - HuellitasXSiempre y AI & GEO 2026: ya están en línea (campo `enlace`).
       - VkQuery: se puede mencionar en el sitio. La demo descargable está por revisarse; falta
         decidir dónde alojar el instalador (GitHub Releases es mejor que el repositorio para archivos grandes).
       - Cuando existan: revisar la descripción de "Cómo trabajo".
-- [ ] **Quinielas: ¿"Propio"?** Isaac aclaró que la plataforma es suya. La "Nota final" actual dice
-      "Proyecto desarrollado en VKSolutions. No incluyo capturas ni código por confidencialidad." y la
-      tarjeta no tiene etiqueta. Confirmar el texto correcto antes de cambiarlo.

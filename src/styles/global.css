@@ -187,6 +187,10 @@
     margin-bottom: 46px;
     border-bottom: 1px solid var(--line);
   }
+  /* Listas con filas separadas por líneas: la línea del encabezado hace de
+     borde superior de la primera fila. */
+  .section-head + .lista-lineas { margin-top: -46px; }
+
   .section-head h2 {
     margin: 0;
     font-family: var(--font-serif);

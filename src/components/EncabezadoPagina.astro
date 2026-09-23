@@ -1,0 +1,40 @@
+---
+// Encabezado compartido por las páginas de texto (Cómo trabajo, Sobre mí).
+interface Props {
+  titulo: string;
+  antetitulo?: string;
+}
+
+const { titulo, antetitulo } = Astro.props;
+---
+
+<header>
+  {antetitulo && <p class="antetitulo fade-up" style="--d:80">{antetitulo}</p>}
+  <h1 class="fade-up" style="--d:160">{titulo}</h1>
+</header>
+
+<style>
+  header {
+    padding-top: clamp(130px, 20vh, 190px);
+    padding-bottom: 36px;
+    margin-bottom: 52px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .antetitulo {
+    margin: 0 0 18px;
+    font-size: 13px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 1.04;
+    letter-spacing: -.4px;
+  }
+</style>

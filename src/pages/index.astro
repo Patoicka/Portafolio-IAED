@@ -54,10 +54,17 @@ const total = String(proyectos.length).padStart(2, '0');
     <div class="section-head reveal">
       <h2 id="otros-title">Otros proyectos</h2>
     </div>
-    <ul class="mini">
+    <ul class="mini lista-lineas">
       {otrosProyectos.map((p, i) => (
         <li class="reveal" style={`--i:${i}`}>
-          <h3>{p.titulo}</h3>
+          <h3>
+            {p.enlace ? (
+              <a class="link-u" href={p.enlace} rel="noopener" target="_blank">
+                {p.titulo} <span aria-hidden="true">↗</span>
+                <span class="sr-only">(se abre en otra pestaña)</span>
+              </a>
+            ) : p.titulo}
+          </h3>
           <p>{p.resumen}</p>
           <span class="tech">{p.tecnologia}</span>
         </li>
@@ -189,7 +196,6 @@ const total = String(proyectos.length).padStart(2, '0');
   }
 
   /* ---------- otros proyectos ---------- */
-  .mini { border-top: 1px solid var(--line); }
   .mini li {
     display: grid;
     gap: 6px;

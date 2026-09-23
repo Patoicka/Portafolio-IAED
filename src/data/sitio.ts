@@ -15,7 +15,9 @@ export const enlaces = {
   cv: '/cv/Isaac-Espinosa-CV.pdf',
 };
 
-export const otrosProyectos = [
+// Proyectos sin página propia. Si alguno tiene demo, se agrega `enlace`
+// y su título se muestra como enlace en la portada.
+export const otrosProyectos: { titulo: string; resumen: string; tecnologia: string; enlace?: string }[] = [
   {
     titulo: 'SuperQ',
     resumen: 'App móvil con tickets digitales y escaneo de códigos QR y de barras.',
@@ -51,4 +53,24 @@ export const sobreMi = [
   'Últimamente me he enfocado en integrar modelos de lenguaje dentro de productos: bases de datos vectoriales, búsqueda semántica y asistentes que conservan contexto entre conversaciones. Llegué ahí por cuenta propia, construyendo cosas hasta entenderlas.',
   'Trabajo principalmente con React, TypeScript, React Native y Strapi.',
   'Busco un equipo donde pueda seguir creciendo mientras el terreno se mueve, o proyectos independientes que me dejen elegir la herramienta según el problema y no según la costumbre. Esa parte es la que más me interesa: evaluar alternativas y quedarme con la que mejor resuelve el caso concreto, aunque implique salir de lo que ya domino.',
+];
+
+export const habilidades = [
+  { area: 'Lenguajes', items: 'JavaScript, TypeScript, PHP, Java' },
+  { area: 'Frontend', items: 'React, React Native, Vue.js, Redux, Tailwind CSS, MUI, HTML5, CSS3' },
+  { area: 'Backend', items: 'Node.js, Strapi, Laravel, APIs REST, WebSockets, Stripe' },
+  { area: 'Bases de datos', items: 'MySQL, PostgreSQL, SQL Server, NoSQL, bases de datos vectoriales' },
+  { area: 'IA / LLMs', items: 'Integración de APIs de modelos de lenguaje, búsqueda semántica' },
+  { area: 'Herramientas', items: 'Docker, Git, AWS, VS Code' },
+];
+
+export const educacion = {
+  carrera: 'Ingeniería en Sistemas Computacionales',
+  escuela: 'Tecnológico de Estudios Superiores de Ecatepec',
+  periodo: '2021 a la fecha',
+};
+
+export const idiomas = [
+  { idioma: 'Español', nivel: 'nativo' },
+  { idioma: 'Inglés', nivel: 'lectura técnica y documentación; conversación básica' },
 ];

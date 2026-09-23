@@ -9,7 +9,8 @@ const links = [
 ];
 
 // Marca el enlace de la página actual para lectores de pantalla
-const actual = Astro.url.pathname;
+// (al construir con build.format 'file' la ruta llega como /enfoque.html)
+const actual = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 ---
 
 <div id="progress" aria-hidden="true"></div>
