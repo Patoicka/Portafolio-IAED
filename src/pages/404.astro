@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EncabezadoPagina from '../components/EncabezadoPagina.astro';
+import { persona } from '../data/sitio';
+---
+
+<BaseLayout title={`Página no encontrada — ${persona.nombreCorto}`} description="Esta página no existe.">
+  <EncabezadoPagina titulo="Página no encontrada" antetitulo="Error 404" />
+  <p class="fade-up" style="--d:260">
+    <a class="btn" href="/">Volver a la portada <span class="arrow" aria-hidden="true">→</span></a>
+  </p>
+</BaseLayout>

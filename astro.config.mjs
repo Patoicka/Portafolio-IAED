@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import { satteri } from '@astrojs/markdown-satteri';
+import sitemap from '@astrojs/sitemap';
 import { diagramas } from './src/lib/diagramas.mjs';
 
 // https://docs.astro.build/en/reference/configuration-reference/
@@ -17,7 +18,15 @@ export default defineConfig({
   trailingSlash: 'never',
   build: {
     format: 'file',
+    // El CSS del sitio pesa ~6 KB: incrustarlo en el HTML ahorra una petición
+    // que bloquea el primer pintado.
+    inlineStylesheets: 'always',
   },
+
+  // Integraciones: código que se engancha al build de Astro.
+  // sitemap genera sitemap-index.xml y sitemap-0.xml a partir de todas las
+  // páginas estáticas, usando `site` para las URLs absolutas.
+  integrations: [sitemap({ filter: (pagina) => !pagina.includes('/404') })],
 
   // Sätteri es el procesador de Markdown por defecto de Astro 7. Se configura
   // explícitamente solo para agregar el plugin que inserta los diagramas.

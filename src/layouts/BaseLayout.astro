@@ -3,12 +3,20 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+import { persona } from '../data/sitio';
+
 interface Props {
   title: string;
   description: string;
+  /** "article" en los casos de estudio; "website" en el resto */
+  type?: 'website' | 'article';
 }
 
-const { title, description } = Astro.props;
+const { title, description, type = 'website' } = Astro.props;
+
+// URL canónica: la ruta actual sin .html (build.format 'file') sobre el dominio de `site`
+const ruta = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+const canonica = new URL(ruta, Astro.site).href;
 ---
 
 <!doctype html>
@@ -18,6 +26,21 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonica} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="author" content={persona.nombre} />
+    <meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E0F12" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph: cómo se ve el enlace al compartirlo (WhatsApp, LinkedIn, etc.) -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:site_name" content={persona.nombreCorto} />
+    <meta property="og:locale" content="es_MX" />
+    <meta name="twitter:card" content="summary" />
 
     <!-- Marca que hay JavaScript antes de pintar, para que las animaciones de
          entrada solo oculten contenido cuando el script podrá mostrarlo.
@@ -70,9 +93,11 @@ const { title, description } = Astro.props;
       let ticking = false;
 
       function update() {
+        // Primero se leen medidas y después se escribe, para no forzar al
+        // navegador a recalcular el layout entre lectura y escritura.
         const y = window.scrollY;
-        header?.classList.toggle('condensed', y > 40);
         const max = document.documentElement.scrollHeight - window.innerHeight;
+        header?.classList.toggle('condensed', y > 40);
         if (bar) bar.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
         ticking = false;
       }
@@ -86,7 +111,7 @@ const { title, description } = Astro.props;
         },
         { passive: true },
       );
-      update();
+      requestAnimationFrame(update);
     </script>
   </body>
 </html>

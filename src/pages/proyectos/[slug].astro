@@ -31,7 +31,7 @@ const { Content } = await render(proyecto);
 const dominio = enlace ? new URL(enlace).hostname : undefined;
 ---
 
-<BaseLayout title={`${titulo} — ${persona.nombreCorto}`} description={unaLinea}>
+<BaseLayout title={`${titulo} — ${persona.nombreCorto}`} description={unaLinea} type="article">
   <article>
     <header class="cabecera">
       <p class="meta fade-up" style="--d:80">
