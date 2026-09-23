@@ -12,7 +12,7 @@ const numero = String(orden).padStart(2, '0');
 
 <a class="card" href={`/proyectos/${proyecto.id}`}>
   <span class="num">{numero}</span>{etiqueta && <span class="badge">{etiqueta}</span>}
-  <h3>{titulo}</h3>
+  <h3 style={`view-transition-name: proyecto-${proyecto.id}`}>{titulo}</h3>
   <p>{resumen}</p>
   <ul class="stack" aria-label="Tecnologías">
     {stack.map((item) => <li class="chip">{item}</li>)}

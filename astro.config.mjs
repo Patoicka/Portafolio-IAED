@@ -9,8 +9,13 @@ export default defineConfig({
   // build con el dominio del sitio; en local se usa localhost.
   site: process.env.URL ?? 'http://localhost:4321',
 
-  // Sin barra final: /proyectos/traqs en lugar de /proyectos/traqs/
+  // Sin barra final: /proyectos/traqs en lugar de /proyectos/traqs/.
+  // format 'file' genera traqs.html en lugar de traqs/index.html, que es lo que
+  // los hosts estáticos (Netlify incluido) sirven sin redirigir a la versión con barra.
   trailingSlash: 'never',
+  build: {
+    format: 'file',
+  },
 
   // Tailwind v4 se integra como plugin de Vite, no como integración de Astro.
   vite: {

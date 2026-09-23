@@ -1,0 +1,59 @@
+<svg class="diagrama" viewBox="0 0 370 580" role="img" aria-labelledby="dg-titulo dg-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-titulo">Arquitectura del asistente conversacional</title>
+  <desc id="dg-desc">Mensaje entrante. ¿Es audio? Si es audio, transcripción con AWS; si no, pasa directo. Búsqueda semántica en Qdrant. Contexto recuperado más mensaje. DeepSeek. Respuesta, que se almacena en Qdrant.</desc>
+  <defs>
+    <marker id="dg-flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1 L9 5 L0 9 z" class="dg-punta" />
+    </marker>
+    <marker id="dg-flecha-acento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1 L9 5 L0 9 z" class="dg-punta-acento" />
+    </marker>
+  </defs>
+
+  <!-- Conectores -->
+  <g class="dg-linea" marker-end="url(#dg-flecha)">
+    <path d="M190 60 V84" />
+    <path d="M190 150 V174" />
+    <path d="M190 222 V258" />
+    <path d="M190 306 V342" />
+    <path d="M190 390 V426" />
+    <path d="M190 474 V510" />
+    <path d="M110 117 H34 V284 H66" />
+  </g>
+  <path class="dg-linea dg-memoria" marker-end="url(#dg-flecha-acento)" d="M310 536 H340 V284 H314" />
+
+  <!-- Etiquetas de las ramas -->
+  <text class="dg-etiqueta" x="200" y="167">sí</text>
+  <text class="dg-etiqueta" x="44" y="108">no</text>
+  <text class="dg-etiqueta dg-etiqueta-acento" transform="translate(356 410) rotate(-90)" text-anchor="middle">se almacena en Qdrant</text>
+
+  <!-- Nodos -->
+  <g class="dg-nodo">
+    <rect x="70" y="16" width="240" height="44" rx="10" />
+    <text x="190" y="43">Mensaje entrante</text>
+  </g>
+  <g class="dg-nodo dg-decision">
+    <path d="M190 86 L270 117 L190 148 L110 117 Z" />
+    <text x="190" y="122">¿Es audio?</text>
+  </g>
+  <g class="dg-nodo">
+    <rect x="70" y="178" width="240" height="44" rx="10" />
+    <text x="190" y="205">Transcripción con AWS</text>
+  </g>
+  <g class="dg-nodo dg-acento">
+    <rect x="70" y="262" width="240" height="44" rx="10" />
+    <text x="190" y="289">Búsqueda semántica en Qdrant</text>
+  </g>
+  <g class="dg-nodo">
+    <rect x="70" y="346" width="240" height="44" rx="10" />
+    <text x="190" y="373">Contexto recuperado + mensaje</text>
+  </g>
+  <g class="dg-nodo">
+    <rect x="70" y="430" width="240" height="44" rx="10" />
+    <text x="190" y="457">DeepSeek</text>
+  </g>
+  <g class="dg-nodo">
+    <rect x="70" y="514" width="240" height="44" rx="10" />
+    <text x="190" y="541">Respuesta</text>
+  </g>
+</svg>

@@ -6,6 +6,7 @@ unaLinea: Asistente de atención para un gimnasio, con memoria de conversaciones
 resumen: Asistente de WhatsApp para un gimnasio, con memoria de conversaciones previas y capacidad de entender notas de voz.
 stack: [Qdrant, DeepSeek, AWS, Búsqueda semántica]
 etiqueta: Propio
+diagrama: asistente-whatsapp
 ---
 
 ## El problema

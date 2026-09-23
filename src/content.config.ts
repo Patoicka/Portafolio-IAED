@@ -17,6 +17,18 @@ const proyectos = defineCollection({
     etiqueta: z.string().optional(),
     enlace: z.url().optional(),
     estado: z.string().optional(),
+    // Nombre de un SVG en src/diagramas (sin extensión). Solo proyectos sin
+    // restricciones de confidencialidad llevan diagrama.
+    diagrama: z.string().optional(),
+    // Demo opcional: un sitio para probar o un archivo para descargar.
+    // url acepta rutas locales (/descargas/...) además de URLs completas.
+    demo: z
+      .object({
+        tipo: z.enum(['sitio', 'descarga']),
+        url: z.string(),
+        nota: z.string().optional(),
+      })
+      .optional(),
   }),
 });
 
