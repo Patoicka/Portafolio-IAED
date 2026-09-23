@@ -37,7 +37,7 @@ export const otrosProyectos = [
 // la página /enfoque muestra el texto completo.
 export const enfoque = {
   intro:
-    'Buena parte de mi trabajo es para clientes y no puedo mostrar capturas ni código. Así que en lugar de pantallas, aquí cuento decisiones: qué restricción tenía cada proyecto, qué alternativas descarté y por qué.',
+    'Las pantallas muestran cómo se ve un producto; las decisiones muestran cómo se construyó. En cada proyecto cuento lo segundo: el problema de fondo, las restricciones reales, las alternativas que evalué y el razonamiento detrás de la que elegí.',
   cita: 'Elegir la herramienta según el problema, no según la costumbre.',
   cierre:
     'En un asistente conversacional eso significó usar un modelo barato, porque la recuperación ya entregaba el contexto resuelto y al modelo solo le quedaba redactar. En un sistema multi-sucursal significó una conexión persistente en vez de consultas periódicas. Cada caso de estudio explica ese razonamiento completo.',

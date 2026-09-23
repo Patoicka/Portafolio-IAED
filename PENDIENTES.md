@@ -11,3 +11,12 @@ Decisiones y datos que faltan por confirmar. Se van cerrando conforme avanza el 
 - [ ] **React y View Transitions.** Propuesta: sin React (no hay interactividad que lo requiera)
       y transiciones nativas del navegador en lugar de `<ClientRouter />`. Pendiente de confirmar.
 - [ ] **Sitemap.** Generarlo a mano con un endpoint de Astro o usar `@astrojs/sitemap`. Fase 5.
+- [ ] **Descripción de "Cómo trabajo".** Se reemplazó la introducción original (que hablaba de no
+      poder mostrar capturas) por la opción B, aprobada por Isaac. Todavía se siente corta:
+      retomarla cuando existan las demos de los proyectos. Candidata para ampliar `/enfoque`:
+      "Antes de escribir código me gusta entender qué restricción manda en el proyecto: el costo,
+      la seguridad, la inmediatez, quién lo va a usar. A partir de ahí comparo alternativas y me
+      quedo con la que mejor resuelve ese caso concreto. En cada caso de estudio cuento ese
+      proceso completo." (no aprobada aún).
+- [ ] **Demos de proyectos.** Isaac planea tener demos. Cuando existan: agregar el enlace al caso de
+      estudio correspondiente y revisar la descripción de "Cómo trabajo".
