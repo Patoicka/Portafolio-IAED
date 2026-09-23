@@ -1,0 +1,80 @@
+---
+import { persona } from '../data/sitio';
+
+const links = [
+  { href: '/#proyectos', label: 'Proyectos' },
+  { href: '/enfoque', label: 'Enfoque' },
+  { href: '/sobre-mi', label: 'Sobre mí' },
+  { href: '#contacto', label: 'Contacto' },
+];
+
+// Marca el enlace de la página actual para lectores de pantalla
+const actual = Astro.url.pathname;
+---
+
+<div id="progress" aria-hidden="true"></div>
+
+<header id="site-header">
+  <a class="brand" href="/">{persona.nombreCorto}</a>
+  <nav aria-label="Principal">
+    {links.map(({ href, label }) => (
+      <a class="link-u" href={href} aria-current={href === actual ? 'page' : undefined}>{label}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  #progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+  }
+
+  header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(22px + env(safe-area-inset-top, 0px)) clamp(20px, 5vw, 64px) 22px;
+    border-bottom: 1px solid transparent;
+    transition: padding .5s var(--ease-out), background-color .5s var(--ease-out), border-color .5s var(--ease-out);
+  }
+
+  /* Estado condensado: se activa desde el script tras 40px de scroll */
+  header.condensed {
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    padding-bottom: 12px;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--line);
+  }
+
+  .brand {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    letter-spacing: .2px;
+  }
+
+  nav {
+    display: flex;
+    gap: clamp(14px, 2.4vw, 30px);
+    font-size: 14.5px;
+    color: var(--muted);
+  }
+
+  nav a[aria-current='page'] { color: var(--ink); }
+
+  /* En pantallas pequeñas solo caben los dos primeros enlaces */
+  @media (max-width: 620px) {
+    nav a:nth-child(n + 3) { display: none; }
+  }
+</style>

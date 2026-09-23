@@ -5,8 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 // https://docs.astro.build/en/reference/configuration-reference/
 export default defineConfig({
   // URL pública del sitio. Astro la usa para generar URLs absolutas
-  // (canonical, Open Graph, sitemap). Pendiente: dominio definitivo.
-  site: 'https://example.com',
+  // (canonical, Open Graph, sitemap). Netlify define la variable URL en cada
+  // build con el dominio del sitio; en local se usa localhost.
+  site: process.env.URL ?? 'http://localhost:4321',
 
   // Sin barra final: /proyectos/traqs en lugar de /proyectos/traqs/
   trailingSlash: 'never',

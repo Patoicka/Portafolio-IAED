@@ -1,31 +1,238 @@
 ---
-// Página temporal de la fase 1: solo sirve para revisar los tokens de diseño.
-// Se reemplaza por la portada real en la fase 2.
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { enfoque, enlaces, otrosProyectos, persona, sobreMi } from '../data/sitio';
 
-const swatches = ['paper', 'ink', 'muted', 'line', 'accent', 'card'];
+// getCollection se ejecuta al construir el sitio, no en el navegador.
+const proyectos = (await getCollection('proyectos')).sort((a, b) => a.data.orden - b.data.orden);
+const total = String(proyectos.length).padStart(2, '0');
 ---
 
 <BaseLayout
-  title="Isaac Espinosa — Desarrollador Web Full-Stack"
-  description="Portafolio de Isaac Alejandro Espinosa Domínguez, desarrollador web full-stack."
+  title={`${persona.nombreCorto} — ${persona.titulo}`}
+  description="Tres años construyendo plataformas con control de acceso por roles, sincronización en tiempo real y pagos en línea. Últimamente, sistemas que integran modelos de lenguaje y búsqueda semántica."
 >
-  <main class="mx-auto max-w-site px-5 py-24 md:px-16">
-    <p class="mb-6 text-[13px] uppercase tracking-[2.4px] text-muted">Tokens de diseño</p>
-    <h1 class="mb-8 font-serif text-[clamp(46px,8.4vw,104px)] leading-[1.02] font-normal">
-      Instrument Serif con <em class="text-accent">acento</em>.
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow fade-up" style="--d:120">{persona.titulo}</p>
+    <h1 id="hero-title">
+      <span class="rise-line"><span style="--d:220">Construyo cosas</span></span>
+      <span class="rise-line"><span style="--d:330">que llegan a <em>producción</em>.</span></span>
     </h1>
-    <p class="mb-12 max-w-lectura text-muted">
-      Inter para el cuerpo de texto. Este párrafo está limitado a <strong class="font-medium text-ink">68ch</strong> de ancho, que es la medida que usarán los casos de estudio.
+    <p class="lede fade-up" style="--d:520">
+      Tres años construyendo plataformas con <strong>control de acceso por roles</strong>,
+      sincronización en tiempo real y pagos en línea. Últimamente, sistemas que integran <strong>modelos de lenguaje y búsqueda semántica</strong>.
     </p>
+    <div class="actions fade-up" style="--d:640">
+      <a class="btn" href="#proyectos">Ver proyectos <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href={enlaces.github}>GitHub</a>
+      <a class="btn btn-ghost" href={enlaces.cv} download>Descargar CV</a>
+    </div>
+    <div class="scrollhint fade-up" style="--d:780" aria-hidden="true">
+      <span class="bar"></span> Desliza
+    </div>
+  </section>
 
-    <ul class="grid grid-cols-2 gap-4 md:grid-cols-6">
-      {swatches.map((name) => (
-        <li class="rounded-2xl border border-line bg-card p-4 transition-transform duration-500 hover:-translate-y-1">
-          <span class="mb-3 block h-12 rounded-lg border border-line" style={`background: var(--${name})`}></span>
-          <span class="text-sm text-muted">{name}</span>
+  <!-- ============ PROYECTOS ============ -->
+  <section id="proyectos" class="block" aria-labelledby="proyectos-title">
+    <div class="section-head reveal">
+      <h2 id="proyectos-title">Proyectos</h2>
+      <span class="count">{total} casos de estudio</span>
+    </div>
+    <ul class="cards">
+      {proyectos.map((proyecto, i) => (
+        <li class="reveal" style={`--i:${i % 2}`}>
+          <ProjectCard proyecto={proyecto} />
         </li>
       ))}
     </ul>
-  </main>
+  </section>
+
+  <!-- ============ OTROS PROYECTOS ============ -->
+  <section class="block" aria-labelledby="otros-title">
+    <div class="section-head reveal">
+      <h2 id="otros-title">Otros proyectos</h2>
+    </div>
+    <ul class="mini">
+      {otrosProyectos.map((p, i) => (
+        <li class="reveal" style={`--i:${i}`}>
+          <h3>{p.titulo}</h3>
+          <p>{p.resumen}</p>
+          <span class="tech">{p.tecnologia}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- ============ CÓMO TRABAJO (resumen) ============ -->
+  <section class="block" aria-labelledby="enfoque-title">
+    <div class="section-head reveal">
+      <h2 id="enfoque-title">Cómo trabajo</h2>
+    </div>
+    <div class="about">
+      <p class="reveal">{enfoque.intro}</p>
+      <p class="pull reveal" style="--i:1">{enfoque.cita}</p>
+      <a class="more link-u reveal" style="--i:2" href="/enfoque">Leer completo <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE MÍ (resumen) ============ -->
+  <section class="block" aria-labelledby="sobre-title">
+    <div class="section-head reveal">
+      <h2 id="sobre-title">Sobre mí</h2>
+    </div>
+    <div class="about">
+      {sobreMi.slice(0, 2).map((parrafo, i) => (
+        <p class="reveal" style={`--i:${i}`}>{parrafo}</p>
+      ))}
+      <a class="more link-u reveal" style="--i:2" href="/sobre-mi">Más sobre mí <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  /* ---------- hero ---------- */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 88vh;
+    min-height: 88svh;
+    padding-top: 120px;
+    padding-bottom: 70px;
+  }
+
+  .eyebrow {
+    margin: 0 0 26px;
+    font-size: 13px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    margin: 0 0 30px;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(46px, 8.4vw, 104px);
+    line-height: 1.02;
+    letter-spacing: -.5px;
+  }
+  h1 em { color: var(--accent); }
+
+  .lede {
+    max-width: 620px;
+    margin: 0 0 42px;
+    font-size: clamp(17px, 2.1vw, 21px);
+    color: var(--muted);
+  }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .scrollhint {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 64px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .scrollhint .bar {
+    position: relative;
+    display: block;
+    width: 46px;
+    height: 1px;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .scrollhint .bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateX(-100%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .scrollhint .bar::after { animation: sweep 2.6s var(--ease-out) infinite; }
+  }
+  @keyframes sweep {
+    0% { transform: translateX(-100%); }
+    55% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* ---------- secciones ---------- */
+  .block { padding: clamp(70px, 11vh, 120px) 0 0; }
+
+  .count {
+    margin-left: auto;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  /* ---------- tarjetas ---------- */
+  .cards { display: grid; gap: 18px; }
+  @media (min-width: 800px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---------- otros proyectos ---------- */
+  .mini { border-top: 1px solid var(--line); }
+  .mini li {
+    display: grid;
+    gap: 6px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 760px) {
+    .mini li {
+      grid-template-columns: 230px 1fr auto;
+      align-items: baseline;
+      gap: 28px;
+    }
+  }
+  .mini h3 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  .mini p { margin: 0; color: var(--muted); font-size: 15px; }
+  .mini .tech { font-size: 13px; color: var(--muted); }
+  @media (min-width: 760px) {
+    .mini .tech { white-space: nowrap; }
+  }
+
+  /* ---------- resúmenes ---------- */
+  .about { max-width: 680px; }
+  .about p { margin: 0 0 20px; font-size: 18px; }
+  .about .pull {
+    margin: 34px 0;
+    padding-left: 24px;
+    border-left: 2px solid var(--accent);
+    font-family: var(--font-serif);
+    font-size: clamp(23px, 3.2vw, 31px);
+    line-height: 1.34;
+  }
+  .more {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .more:hover, .more:focus-visible { color: var(--accent); }
+</style>

@@ -1,0 +1,138 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  proyecto: CollectionEntry<'proyectos'>;
+}
+
+const { proyecto } = Astro.props;
+const { orden, titulo, resumen, stack, etiqueta } = proyecto.data;
+const numero = String(orden).padStart(2, '0');
+---
+
+<a class="card" href={`/proyectos/${proyecto.id}`}>
+  <span class="num">{numero}</span>{etiqueta && <span class="badge">{etiqueta}</span>}
+  <h3>{titulo}</h3>
+  <p>{resumen}</p>
+  <ul class="stack" aria-label="Tecnologías">
+    {stack.map((item) => <li class="chip">{item}</li>)}
+  </ul>
+  <span class="go" aria-hidden="true">→</span>
+</a>
+
+<style>
+  /* Los cuatro cambios del hover (elevación, línea de acento, chips y flecha)
+     se disparan con el mismo gesto: :hover o foco de teclado sobre .card */
+  .card {
+    position: relative;
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    padding: 30px 30px 26px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: transform .55s var(--ease-out), box-shadow .55s var(--ease-out), border-color .4s var(--ease-out);
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+    transition: transform .55s var(--ease-out);
+  }
+
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 44px var(--shadow);
+    border-color: transparent;
+  }
+
+  .card:hover::before,
+  .card:focus-visible::before {
+    transform: scaleY(1);
+    transform-origin: 50% 0;
+  }
+
+  .card:focus-visible { outline-offset: 4px; border-radius: 16px; }
+
+  .num {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--muted);
+    transition: color .4s var(--ease-out);
+  }
+  .card:hover .num,
+  .card:focus-visible .num { color: var(--accent); }
+
+  .badge {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 11.5px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h3 {
+    margin: 12px 0 10px;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -.2px;
+  }
+
+  p {
+    margin: 0 0 20px;
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 0;
+    padding: 0 28px 0 0;
+    list-style: none;
+  }
+
+  .chip {
+    padding: 4px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 12.5px;
+    transition: border-color .4s var(--ease-out), color .4s var(--ease-out);
+  }
+  .card:hover .chip,
+  .card:focus-visible .chip {
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    color: var(--ink);
+  }
+
+  .go {
+    position: absolute;
+    right: 26px;
+    bottom: 26px;
+    color: var(--muted);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity .45s var(--ease-out), transform .45s var(--ease-out), color .4s var(--ease-out);
+  }
+  .card:hover .go,
+  .card:focus-visible .go {
+    opacity: 1;
+    transform: none;
+    color: var(--accent);
+  }
+</style>

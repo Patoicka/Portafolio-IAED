@@ -1,0 +1,59 @@
+---
+import { enlaces, persona } from '../data/sitio';
+---
+
+<footer id="contacto" class="wrap">
+  <h2 class="reveal">¿Trabajamos juntos?</h2>
+  <ul class="links reveal" style="--i:1">
+    <li><a class="link-u" href={`mailto:${enlaces.correo}`}>{enlaces.correo}</a></li>
+    <li><a class="link-u" href={enlaces.github}>GitHub</a></li>
+    <li><a class="link-u" href={enlaces.linkedin}>LinkedIn</a></li>
+    <li><a class="link-u" href={enlaces.cv} download>Descargar CV</a></li>
+  </ul>
+  <div class="base">
+    <span>{persona.ubicacion}</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding-top: clamp(70px, 11vh, 120px);
+  }
+
+  footer::before {
+    content: "";
+    display: block;
+    border-top: 1px solid var(--line);
+    margin-bottom: clamp(70px, 11vh, 120px);
+  }
+
+  h2 {
+    margin: 0 0 28px;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(34px, 6vw, 64px);
+    line-height: 1.1;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 40px 0 calc(48px + env(safe-area-inset-bottom, 0px));
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+</style>
