@@ -248,13 +248,12 @@
 }
 
 /* ==========================================================================
-   Diagrama de arquitectura (casos de estudio con el campo diagrama)
+   Diagrama de arquitectura (insertado desde Markdown por src/lib/diagramas.mjs)
    Usa los mismos tokens, así que cambia solo con el modo oscuro.
    ========================================================================== */
 
 .figura-diagrama {
-  max-width: var(--container-lectura);
-  margin: 0 0 56px;
+  margin: 32px 0 36px;
   padding: 28px 12px;
   background: var(--card);
   border: 1px solid var(--line);

@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import { satteri } from '@astrojs/markdown-satteri';
+import { diagramas } from './src/lib/diagramas.mjs';
 
 // https://docs.astro.build/en/reference/configuration-reference/
 export default defineConfig({
@@ -15,6 +17,12 @@ export default defineConfig({
   trailingSlash: 'never',
   build: {
     format: 'file',
+  },
+
+  // Sätteri es el procesador de Markdown por defecto de Astro 7. Se configura
+  // explícitamente solo para agregar el plugin que inserta los diagramas.
+  markdown: {
+    processor: satteri({ mdastPlugins: [diagramas] }),
   },
 
   // Tailwind v4 se integra como plugin de Vite, no como integración de Astro.

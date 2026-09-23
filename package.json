@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Patoicka/Portafolio-IAED#readme",
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.2",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.4",
     "tailwindcss": "^4.3.3"

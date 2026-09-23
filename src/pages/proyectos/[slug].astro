@@ -22,21 +22,11 @@ interface Props {
 }
 
 const { proyecto, anterior, siguiente } = Astro.props;
-const { orden, titulo, unaLinea, stack, etiqueta, enlace, estado, demo, diagrama } = proyecto.data;
+const { orden, titulo, unaLinea, stack, etiqueta, enlace, estado, demo } = proyecto.data;
 const numero = String(orden).padStart(2, '0');
 
 // render() convierte el Markdown en un componente listo para usar como <Content />
 const { Content } = await render(proyecto);
-
-// Los diagramas se cargan como texto (?raw) al construir el sitio y se insertan
-// en línea, para que el SVG pueda usar las variables CSS de color.
-const diagramas = import.meta.glob<string>('../../diagramas/*.svg', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-});
-const svg = diagrama ? diagramas[`../../diagramas/${diagrama}.svg`] : undefined;
-if (diagrama && !svg) throw new Error(`No existe el diagrama src/diagramas/${diagrama}.svg`);
 
 const dominio = enlace ? new URL(enlace).hostname : undefined;
 ---
@@ -77,8 +67,6 @@ const dominio = enlace ? new URL(enlace).hostname : undefined;
         </div>
       )}
     </header>
-
-    {svg && <figure class="figura-diagrama" set:html={svg} />}
 
     <div class="cuerpo">
       <Content />

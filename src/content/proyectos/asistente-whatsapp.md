@@ -6,7 +6,6 @@ unaLinea: Asistente de atención para un gimnasio, con memoria de conversaciones
 resumen: Asistente de WhatsApp para un gimnasio, con memoria de conversaciones previas y capacidad de entender notas de voz.
 stack: [Qdrant, DeepSeek, AWS, Búsqueda semántica]
 etiqueta: Propio
-diagrama: asistente-whatsapp
 ---
 
 ## El problema
@@ -29,6 +28,8 @@ conversacional por usuario almacenando el historial en una base de datos vectori
 fragmentos relevantes mediante búsqueda semántica, de modo que cada respuesta considera lo que esa
 persona ya había preguntado. Integré servicios de AWS para transcribir las notas de voz y procesarlas
 como una entrada de texto más.
+
+[[diagrama:asistente-whatsapp]]
 
 ## Decisiones técnicas
 
