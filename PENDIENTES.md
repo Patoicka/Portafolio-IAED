@@ -10,7 +10,9 @@ Decisiones y datos que faltan por confirmar. Se van cerrando conforme avanza el 
       toma la variable `URL` que Netlify define en cada build, con `localhost` como respaldo.
 - [x] **React y View Transitions.** Sin React (no hay interactividad que lo requiera) y
       transiciones nativas del navegador (`@view-transition` en CSS) en lugar de `<ClientRouter />`.
-- [ ] **Sitemap.** Generarlo a mano con un endpoint de Astro o usar `@astrojs/sitemap`. Fase 5.
+- [x] **Sitemap.** Con `@astrojs/sitemap`, elegido por Isaac.
+- [x] **Fuentes.** Se quedan en Google Fonts por decisión de Isaac. Lighthouse da rendimiento 90
+      por esa petición; sirviéndolas desde el propio sitio (API de fuentes de Astro) daría 100.
 - [ ] **Descripción de "Cómo trabajo".** Se reemplazó la introducción original (que hablaba de no
       poder mostrar capturas) por la opción B, aprobada por Isaac. Todavía se siente corta:
       retomarla cuando existan las demos de los proyectos. Candidata para ampliar `/enfoque`:
