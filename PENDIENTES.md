@@ -25,8 +25,11 @@ Decisiones y datos que faltan por confirmar. Se van cerrando conforme avanza el 
         url: https://...   # o /descargas/archivo.zip si el archivo vive en public/
         nota: Texto opcional bajo el botón (por ejemplo, las restricciones de la demo)
       ```
-      - Quinielas: demo web en evaluación. Confirmar que VKSolutions lo permite.
+      - Quinielas: se hizo en VKSolutions y es confidencial. Sin demo; la nota final se queda.
+      - Análisis predictivo deportivo: proyecto propio, candidato a demo web. Hoy vive en "Otros
+        proyectos" (sin página propia). Si llega la demo: agregarle un enlace en esa lista o
+        convertirlo en caso de estudio completo (requiere contenido nuevo de Isaac).
       - HuellitasXSiempre y AI & GEO 2026: ya están en línea (campo `enlace`).
-      - VkQuery: posible demo descargable con restricciones. Confirmar permiso y dónde alojar el
-        instalador (GitHub Releases es mejor que el repositorio para archivos grandes).
+      - VkQuery: se puede mencionar en el sitio. La demo descargable está por revisarse; falta
+        decidir dónde alojar el instalador (GitHub Releases es mejor que el repositorio para archivos grandes).
       - Cuando existan: revisar la descripción de "Cómo trabajo".

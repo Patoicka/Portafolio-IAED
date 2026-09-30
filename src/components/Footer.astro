@@ -5,7 +5,12 @@ import { enlaces, persona } from '../data/sitio';
 <footer id="contacto" class="wrap">
   <h2 class="reveal">¿Trabajamos juntos?</h2>
   <ul class="links reveal" style="--i:1">
-    <li><a class="link-u" href={`mailto:${enlaces.correo}`}>{enlaces.correo}</a></li>
+    <li>
+      <a class="link-u" href={`mailto:${enlaces.correo}`}>{enlaces.correo}</a>
+      <button type="button" class="copiar" data-correo={enlaces.correo} aria-label={`Copiar ${enlaces.correo} al portapapeles`}>
+        <span class="etiqueta">Copiar</span>
+      </button>
+    </li>
     <li><a class="link-u" href={enlaces.github}>GitHub</a></li>
     <li><a class="link-u" href={enlaces.linkedin}>LinkedIn</a></li>
     <li><a class="link-u" href={enlaces.cv} download>Descargar CV</a></li>
@@ -15,6 +20,28 @@ import { enlaces, persona } from '../data/sitio';
     <span>© 2026</span>
   </div>
 </footer>
+
+<script>
+  // Un botón por página basta: el footer no se repite en el documento.
+  const boton = document.querySelector<HTMLButtonElement>('.copiar');
+  const etiqueta = boton?.querySelector('.etiqueta');
+  let vigencia: ReturnType<typeof setTimeout> | undefined;
+
+  boton?.addEventListener('click', async () => {
+    const correo = boton.dataset.correo;
+    if (!correo || !etiqueta) return;
+    try {
+      await navigator.clipboard.writeText(correo);
+      etiqueta.textContent = 'Copiado';
+    } catch {
+      etiqueta.textContent = 'No se pudo copiar';
+    }
+    clearTimeout(vigencia);
+    vigencia = setTimeout(() => {
+      etiqueta.textContent = 'Copiar';
+    }, 1800);
+  });
+</script>
 
 <style>
   footer {
@@ -46,6 +73,26 @@ import { enlaces, persona } from '../data/sitio';
     color: var(--muted);
     font-size: 16px;
   }
+
+  .links li:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .copiar {
+    padding: 3px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: .3px;
+    cursor: pointer;
+    transition: border-color .3s var(--ease-out), color .3s var(--ease-out);
+  }
+  .copiar:hover,
+  .copiar:focus-visible { border-color: var(--accent); color: var(--ink); }
 
   .base {
     display: flex;

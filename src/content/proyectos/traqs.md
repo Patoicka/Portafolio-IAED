@@ -5,6 +5,7 @@ titulo: Traqs
 unaLinea: Sistema de seguimiento de reportes para una cadena de tiendas, con control de acceso jerárquico y sincronización en tiempo real entre sucursales.
 resumen: Gestión de reportes multi-sucursal con cinco perfiles jerárquicos y sincronización en tiempo real entre tiendas.
 stack: [React, TypeScript, Strapi, MySQL, MUI, WebSockets]
+enlace: https://traqs.developersq.com.mx/
 ---
 
 ## El problema

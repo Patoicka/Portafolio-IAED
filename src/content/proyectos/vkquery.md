@@ -6,7 +6,6 @@ titulo: VkQuery
 unaLinea: Gestor de bases de datos de escritorio con un asistente que ejecuta tareas a partir de instrucciones en lenguaje natural.
 resumen: Gestor de bases de datos de escritorio con un asistente que propone las operaciones y deja la ejecución en manos del usuario.
 stack: [Tauri, React, integración de modelo de lenguaje]
-etiqueta: Propio
 estado: En desarrollo
 ---
 
@@ -48,3 +47,8 @@ bloquearlo.
 Un gestor de bases de datos vive en el escritorio, junto a las conexiones del usuario. Tauri permitió
 construir toda la interfaz con React manteniendo un binario ligero, sin cargar con el peso de una
 aplicación de escritorio tradicional.
+
+## Nota final
+
+Proyecto desarrollado en VKSolutions para un cliente. No incluyo capturas ni código por
+confidencialidad; puedo explicar la arquitectura y las decisiones en una conversación.

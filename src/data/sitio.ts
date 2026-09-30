@@ -15,7 +15,9 @@ export const enlaces = {
   cv: '/cv/Isaac-Espinosa-CV.pdf',
 };
 
-export const otrosProyectos = [
+// Proyectos sin página propia. Si alguno tiene demo, se agrega `enlace`
+// y su título se muestra como enlace en la portada.
+export const otrosProyectos: { titulo: string; resumen: string; tecnologia: string; enlace?: string }[] = [
   {
     titulo: 'SuperQ',
     resumen: 'App móvil con tickets digitales y escaneo de códigos QR y de barras.',
@@ -45,10 +47,91 @@ export const enfoque = {
 
 // "Sobre mí": la portada muestra los dos primeros párrafos;
 // la página /sobre-mi muestra todos.
-export const sobreMi = [
-  'Soy desarrollador web full-stack y estudiante de Ingeniería en Sistemas Computacionales en el Tecnológico de Estudios Superiores de Ecatepec.',
-  'Durante más de tres años trabajé en productos que terminaron en manos de usuarios reales: sistemas de gestión para operaciones con varias sucursales, plataformas con pagos en línea, aplicaciones móviles y herramientas internas. Esa es la parte del trabajo que más me interesa, la de construir algo que alguien va a usar todos los días y no se puede caer.',
-  'Últimamente me he enfocado en integrar modelos de lenguaje dentro de productos: bases de datos vectoriales, búsqueda semántica y asistentes que conservan contexto entre conversaciones. Llegué ahí por cuenta propia, construyendo cosas hasta entenderlas.',
-  'Trabajo principalmente con React, TypeScript, React Native y Strapi.',
-  'Busco un equipo donde pueda seguir creciendo mientras el terreno se mueve, o proyectos independientes que me dejen elegir la herramienta según el problema y no según la costumbre. Esa parte es la que más me interesa: evaluar alternativas y quedarme con la que mejor resuelve el caso concreto, aunque implique salir de lo que ya domino.',
+// `etiqueta` es el riel editorial junto al párrafo: describe de qué trata
+// ese párrafo puntual (no repite el título "Sobre mí" de la sección).
+export const sobreMi: { etiqueta: string; texto: string }[] = [
+  {
+    etiqueta: 'Formación',
+    texto: 'Soy desarrollador web full-stack y estudiante de Ingeniería en Sistemas Computacionales en el Tecnológico de Estudios Superiores de Ecatepec.',
+  },
+  {
+    etiqueta: 'Experiencia',
+    texto: 'Durante más de tres años trabajé en productos que terminaron en manos de usuarios reales: sistemas de gestión para operaciones con varias sucursales, plataformas con pagos en línea, aplicaciones móviles y herramientas internas. Esa es la parte del trabajo que más me interesa, la de construir algo que alguien va a usar todos los días y no se puede caer.',
+  },
+  {
+    etiqueta: 'Enfoque actual',
+    texto: 'Últimamente me he enfocado en integrar modelos de lenguaje dentro de productos: bases de datos vectoriales, búsqueda semántica y asistentes que conservan contexto entre conversaciones. Llegué ahí por cuenta propia, construyendo cosas hasta entenderlas.',
+  },
+  {
+    etiqueta: 'Stack principal',
+    texto: 'Trabajo principalmente con React, TypeScript, React Native y Strapi.',
+  },
+  {
+    etiqueta: 'Qué busco',
+    texto: 'Busco un equipo donde pueda seguir creciendo mientras el terreno se mueve, o proyectos independientes que me dejen elegir la herramienta según el problema y no según la costumbre. Esa parte es la que más me interesa: evaluar alternativas y quedarme con la que mejor resuelve el caso concreto, aunque implique salir de lo que ya domino.',
+  },
+];
+
+// Tecnologías agrupadas por categoría para la franja animada de /sobre-mi.
+// `icono` es una clave de src/data/iconos.ts; si se omite, el chip se muestra solo con texto
+// (útil para marcas sin logo disponible, como AWS o VS Code en el set de iconos usado).
+export const tecnologias: { categoria: string; items: { nombre: string; icono?: string }[] }[] = [
+  {
+    categoria: 'Frontend',
+    items: [
+      { nombre: 'React', icono: 'react' },
+      { nombre: 'React Native', icono: 'react' },
+      { nombre: 'Astro', icono: 'astro' },
+      { nombre: 'Vue.js', icono: 'vuedotjs' },
+      { nombre: 'TypeScript', icono: 'typescript' },
+      { nombre: 'JavaScript', icono: 'javascript' },
+      { nombre: 'Tailwind CSS', icono: 'tailwindcss' },
+      { nombre: 'Redux', icono: 'redux' },
+      { nombre: 'HTML5', icono: 'html5' },
+      { nombre: 'CSS3', icono: 'css3' },
+      { nombre: 'MUI', icono: 'mui' },
+    ],
+  },
+  {
+    categoria: 'Backend',
+    items: [
+      { nombre: 'Node.js', icono: 'nodedotjs' },
+      { nombre: 'Strapi', icono: 'strapi' },
+      { nombre: 'Laravel', icono: 'laravel' },
+      { nombre: 'PHP', icono: 'php' },
+      { nombre: 'Java', icono: 'java' },
+      { nombre: 'DeepSeek', icono: 'deepseek' },
+      { nombre: 'Stripe', icono: 'stripe' },
+    ],
+  },
+  {
+    categoria: 'Bases de datos',
+    items: [
+      { nombre: 'PostgreSQL', icono: 'postgresql' },
+      { nombre: 'MySQL', icono: 'mysql' },
+      { nombre: 'MongoDB', icono: 'mongodb' },
+      { nombre: 'SQL Server' },
+      { nombre: 'Qdrant', icono: 'qdrant' },
+    ],
+  },
+  {
+    categoria: 'DevOps y herramientas',
+    items: [
+      { nombre: 'Docker', icono: 'docker' },
+      { nombre: 'Git', icono: 'git' },
+      { nombre: 'AWS' },
+      { nombre: 'VS Code' },
+    ],
+  },
+];
+
+export const educacion = {
+  carrera: 'Ingeniería en Sistemas Computacionales',
+  escuela: 'Tecnológico de Estudios Superiores de Ecatepec',
+  periodo: '2021 a la fecha',
+};
+
+export const idiomas = [
+  { idioma: 'Español', nivel: 'nativo' },
+  { idioma: 'Inglés', nivel: 'lectura técnica y documentación; conversación básica' },
 ];

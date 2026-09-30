@@ -1,0 +1,116 @@
+---
+// Franja de tecnologías: una fila por categoría, cada una con scroll horizontal
+// automático e infinito (la lista se duplica y se desplaza -50%).
+// Bajo prefers-reduced-motion, la regla global en global.css fuerza duration casi 0,
+// así que la franja queda estática mostrando el mismo contenido duplicado sin saltos visibles.
+import { iconos } from '../data/iconos';
+import { tecnologias } from '../data/sitio';
+
+// Velocidad constante entre filas: más items → animación más larga, en vez de una
+// duración fija que haría lucir unas filas más rápidas que otras.
+const PX_POR_ITEM = 640;
+---
+
+<div class="franja-tecnologias">
+  {tecnologias.map((grupo, i) => {
+    const duracion = grupo.items.length * (PX_POR_ITEM / 100);
+    const invertida = i % 2 === 1;
+    return (
+      <div class="fila-tec reveal" style={`--i:${i % 3}`}>
+        <span class="etiqueta-tec">{grupo.categoria}</span>
+        <div class="marquee">
+          <ul
+            class="marquee-track"
+            style={`--dur:${duracion}s; --dir:${invertida ? 'reverse' : 'normal'}`}
+          >
+            {[...grupo.items, ...grupo.items].map((item, j) => (
+              <li class="chip-tec" aria-hidden={j >= grupo.items.length ? 'true' : undefined}>
+                {item.icono && iconos[item.icono] && (
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d={iconos[item.icono]} /></svg>
+                )}
+                <span>{item.nombre}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .franja-tecnologias { display: grid; gap: 30px; }
+
+  .fila-tec {
+    display: grid;
+    gap: 14px;
+  }
+
+  .etiqueta-tec {
+    font-size: 13px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Ancho fijo y angosto: es una "ventana" sobre la lista, no el ancho del bloque.
+     Con categorías cortas (4-5 items), una ventana tan ancha como el contenedor
+     dejaría ver la lista completa más el arranque de su copia (el truco del loop)
+     al mismo tiempo, y se lee como una repetición en vez de una cinta continua. */
+  .marquee {
+    max-width: min(100%, 520px);
+    margin-inline: auto;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .marquee-track {
+      animation: marquee-scroll var(--dur, 20s) linear infinite;
+      animation-direction: var(--dir, normal);
+    }
+    .marquee:hover .marquee-track,
+    .marquee:focus-within .marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes marquee-scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  .chip-tec {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--muted);
+    font-size: 14px;
+    white-space: nowrap;
+    transition: border-color .4s var(--ease-out), color .4s var(--ease-out);
+  }
+  .chip-tec:hover {
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+    color: var(--ink);
+  }
+
+  .chip-tec svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+</style>
